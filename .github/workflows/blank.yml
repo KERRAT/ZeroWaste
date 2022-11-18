@@ -68,3 +68,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           json-path: tmp/rspec_results.json
         if: always()
+
+      - name: Upload coverage reports to Codecov with GitHub Action
+        uses: codecov/codecov-action@v3
