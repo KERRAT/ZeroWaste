@@ -9,13 +9,13 @@ orbs:
 workflows:
   heroku_deploy:
     jobs:
-      - rubocop
-      - build:
-          requires:
-            - rubocop
-      - test:
-          requires:
-            - rubocop
+      # - rubocop
+      # - build:
+      #     requires:
+      #       - rubocop
+      # - test:
+      #     requires:
+      #       - rubocop
       - heroku/deploy-via-git:
           requires:
             - build
