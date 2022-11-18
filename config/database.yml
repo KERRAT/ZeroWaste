@@ -1,10 +1,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: password
+  username: masteruser
+  password: simplesimple
   host: localhost
   port: 5432
+
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 development:
   <<: *default
@@ -14,8 +15,12 @@ test:
   <<: *default
   database: zero_waste_test
 
+staging:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+
 production:
   <<: *default
-#   database: zero_waste_production
-#   username: zero_waste
-#   password: <%= ENV['ZERO_WASTE_DATABASE_PASSWORD'] %>
+  # database: zero_waste_production
+  # username: zero_waste
+  # password: <%= ENV['ZERO_WASTE_DATABASE_PASSWORD'] %>
