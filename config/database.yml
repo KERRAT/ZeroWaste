@@ -1,8 +1,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: masteruser
-  password: simplesimple
+  username: postgres
+  password: password
   host: localhost
   port: 5432
 
@@ -17,6 +17,8 @@ test:
 
 staging:
   <<: *default
+  username: masteruser
+  password: simplesimple
   url: <%= ENV['DATABASE_URL'] %>
 
 production:
