@@ -366,9 +366,6 @@ body.admin {
   }
 
   .page-header {
-    width: auto;
-    margin-right: 15px;
-    margin-left: 15px;
     display: flex;
     justify-content: space-between;
   }
@@ -443,5 +440,13 @@ body.admin {
 
   .donate-btn a {
     padding: 10px;
+  }
+}
+
+@media screen and (max-width: $md) and (min-width: $xs) {
+  .page-header {
+    width: auto;
+    margin-right: 15px;
+    margin-left: 15px;
   }
 }
