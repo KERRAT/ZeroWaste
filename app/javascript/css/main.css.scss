@@ -370,7 +370,7 @@ body.admin {
     margin-right: 15px;
     margin-left: 15px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 
   .donate-btn a {
@@ -411,10 +411,6 @@ body.admin {
     padding-top: initial;
     padding-bottom: initial;
     width: fit-content;
-  }
-
-  .page-header {
-    width: 510px;
   }
 
   .calculation-results,
