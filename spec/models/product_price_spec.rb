@@ -19,18 +19,81 @@
 #
 require 'rails_helper'
 
-RSpec.describe Product, type: :model do
-  describe 'factory' do
-    context 'product prices factory not nil' do
-      it 'low' do
-        expect(create(:product_price, :LOW)).not_to eq(nil)
+RSpec.describe ProductPrice, type: :model do
+  describe 'validations' do
+    context 'price' do
+      it {
+        is_expected.to validate_presence_of(:price)
+      }
+    end
+
+    context 'category' do
+      it {
+        is_expected.to validate_presence_of(:category)
+      }
+    end
+  end
+  describe 'category' do
+    subject { create(:product_price, category: category) }
+    context 'check correct input' do
+
+      context 'when category is minus' do
+        let(:category) { -1 }
+        it {
+          expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+        }
       end
-      it 'medium' do
-        expect(create(:product_price, :MEDIUM)).not_to eq(nil)
+
+      context 'when category is string' do
+        let(:category) { 'Sd5' }
+        it {
+          expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+        }
       end
-      it 'high' do
-        expect(create(:product_price, :HIGH)).not_to eq(nil)
+
+      context 'when category is float' do
+        let(:category) { 1.23456789 }
+        it {
+          expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+        }
       end
+
+      context 'when category is empty' do
+        let(:category) { }
+        it {
+          expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+        }
+      end
+
+    end
+    context 'check names output' do
+      context 'when category "BUDGETARY"' do
+        it {
+          expect(create(:product_price, :BUDGETARY).category).to eq('BUDGETARY')
+        }
+      end
+
+      context 'when category "MEDIUM"' do
+        let(:category) { 'MEDIUM' }
+        it {
+          expect(create(:product_price, :MEDIUM).category).to eq('MEDIUM')
+        }
+      end
+
+      context 'when category "PREMIUM"' do
+        let(:category) { 'PREMIUM' }
+        it {
+          expect(create(:product_price, :PREMIUM).category).to eq('PREMIUM')
+        }
+      end
+    end
+  end
+  describe 'correct datatype' do
+    subject { create(:product_price) }
+    context 'when price is a integer' do
+      it {
+        expect(subject.price).to be_a(Integer)
+      }
     end
   end
 end

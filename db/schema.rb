@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 2022_10_26_072654) do
   create_table "product_prices", force: :cascade do |t|
     t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.bigint "product_id", null: false
-    t.float "price"
-    t.integer "category"
+    t.integer "price"
+    t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_product_prices_on_product_id"
